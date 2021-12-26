@@ -12,14 +12,14 @@ const bookParser = (item, index): ParsedModel => {
             created: `2021-11-20T14:43:17.854Z`,
             updated: `2021-11-20T14:43:17.854Z`,
             title: volumeInfo.title,
-            description: volumeInfo.description,
-            rating: 5.0,
+            description: volumeInfo.description || 'Brak opisu.',
+            rating: 0,
             pages: volumeInfo.pageCount || 0,
             slug: slugify(volumeInfo.title),
             publishDate: getDate(volumeInfo.publishedDate),
             status: 'A',
-            authors: volumeInfo.authors,
-            genre: volumeInfo.categories,
+            authors: volumeInfo.authors || [],
+            genre: volumeInfo.categories || [],
         },
         originalItem: item.volumeInfo
     };

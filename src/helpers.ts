@@ -43,6 +43,10 @@ export const getDate = (date) => {
         case 7: {
             return date + '-01T14:43:17.854Z';
         }
+        default: {
+            return '2021-11-20T14:43:17.854Z';
+        }
+
     }
 };
 
@@ -70,9 +74,11 @@ export const getResolver = (
 };
 
 export const getLinkedPropertiesNames = (items: ParsedModel[], propertyName): string[] => {
-    return items.map((book) => {
+    const linkedProperties: string[] = items.map((book) => {
         return book.originalItem[propertyName] || [];
     }).reduce((prev: string[], next: string[]) => {
         return prev.concat(next);
     });
+
+    return [...new Set(linkedProperties)];
 }
